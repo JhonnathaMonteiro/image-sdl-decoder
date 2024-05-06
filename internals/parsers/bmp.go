@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func BMP(filepath string) ([]uint8, error) {
+func BMP(filepath string) (*data.BmpFile, error) {
 	file, err := os.Open(filepath)
 	if err != nil {
 		panic(err)
@@ -34,5 +34,10 @@ func BMP(filepath string) ([]uint8, error) {
 	pixelData := make([]uint8, rowSize*infoHeader.Heigth)
 	file.ReadAt(pixelData, int64(fileHeader.Offset))
 
-	return pixelData, nil
+  return &data.BmpFile{
+    FileHeader: fileHeader,
+    InfoHeader: infoHeader,
+    PixelData:  pixelData,
+  }, nil
+
 }

@@ -20,3 +20,9 @@ type BpmInfoHeader struct {
 	ColorsUsed      uint32
 	ImportantColors uint32
 }
+
+type BmpFile struct {
+  FileHeader BmpFileHeader
+  InfoHeader BpmInfoHeader
+  PixelData  []uint8
+}
